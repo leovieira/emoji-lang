@@ -1,0 +1,16 @@
+🔢 a 👈 7;
+a⏪;
+
+🤔 (a 👆 4) ⚖️ (a 👇 8) ⤵️
+  ✏️ "a is greater than 4 and less than 8";
+⤴️
+
+🤔 (a 👆✅ 32) ✌️ (a ❗✅ 6) ⤵️
+  ✏️ "a is greater than or equal to 32 or a is different from 6";
+⤴️ 🙃 ⤵️
+  ✏️ "a does not meet the condition";
+⤴️
+
+🤔 ❗(a ✅ 2) ⤵️
+  ✏️ "a is different from 2";
+⤴️

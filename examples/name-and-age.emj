@@ -1,0 +1,8 @@
+🔡 name 👈 "leonardo";
+🔢 age 👈 21;
+
+✏️ "My name is: ";
+✏️ name;
+
+✏️ "My age is: ";
+✏️ age;
