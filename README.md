@@ -81,7 +81,7 @@ Run:
 ./build/program
 ```
 
-Espected output: `Hello World!`
+✅ Espected output: `Hello World!`
 
 Debug:
 
@@ -186,3 +186,69 @@ x 👈 1 ➕ 2 ✖️ 3;
 
 - `;` — Statement terminator
 - `(` `)` — Parentheses for expressions
+
+## 🌳 Graphviz / AST visual
+
+When compiling a program, the compiler generates a graph that represents the abstract syntax tree (AST), showing how the program's nodes are connected. You can view it directly on [Graphviz Online](https://dreampuf.github.io/GraphvizOnline/).
+
+Result from `hello.emj`:
+
+```dot
+graph {
+  n95282641319744[label="\"Hello World!\""];
+  n95282641319696[label="print"];
+  n95282641319696 -- n95282641319744;
+  n95282641319856[label="stmts"];
+  n95282641319856 -- n95282641319696;
+  n95282641319936[label="program"];
+  n95282641319936 -- n95282641319856;
+}
+```
+
+![graphviz-hello](.github/graphviz-hello.png)
+
+✅ Interpretation:
+
+- `"program"` is the root node.
+- `"stmts"` represents the list of statements.
+- `"print"` is the print instruction.
+- `"Hello World!"` is the value to be printed.
+
+## 🤖 LLVM IR Code
+
+In addition to the graph, the compilation also prints the LLVM IR (Intermediate Representation) in the terminal, which is a low-level intermediate representation of your program, but still readable.
+
+Partial result from `hello.emj`:
+
+```llvm
+; ModuleID = 'llvm program'
+source_filename = "llvm program"
+
+@0 = private unnamed_addr constant [13 x i8] c"Hello World!\00", align 1
+
+define i16 @main() {
+entry:
+  call void @printstr(ptr @0)
+  ret i16 0
+}
+
+declare void @printfloat(double)
+declare void @printstr(ptr)
+```
+
+✅ Interpretation:
+
+- `@0` → constant that stores "Hello World!".
+- `@main()` → the program's main function.
+- `call void @printstr(ptr @0)` → calls the runtime function to print the string.
+- `declare void @printfloat(double)` → declares the runtime function to print a float.
+
+## 👨‍💻 Examples
+
+- [Hello](examples/hello.emj)
+- [Name and Age](examples/name-and-age.emj)
+- [Conditions](examples/conditions.emj)
+- [Counting](examples/counting.emj)
+- [Lexical Error](examples/lexical-error.emj)
+- [Syntactic Error](examples/syntactic-error.emj)
+- [Semantic Error](examples/semantic-error.emj)
